@@ -1,3 +1,51 @@
+# Netflix GPT
+ - Create React App
+ - Configure Tailwind CSS
+ - Header
+ - Routing of App
+ - Login form and Sign up form
+ - Form Validation (useRef hook)
+ - Deploying app in production using firebase
+ - Create sign up user account
+ - Implement Sign up / Sign in user api
+ - Implemented Redux Store to store the data of the user signing in.
+ - Implemented Sign Out
+ - Update Profile api call also done
+
+
+
+
+
+# Features
+Login/Signup
+  - Sign in/Sign up form
+  - Redirect to browse page
+
+Browse (after authentication)
+  - Header
+  - Main Movie
+    - Trailer in Background
+    - Title and Description
+    - Movie Suggestions
+      - Movie Lists * N
+    
+Netflix GPT
+  - Search Bar
+  - Movie Suggestions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

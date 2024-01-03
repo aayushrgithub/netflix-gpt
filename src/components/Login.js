@@ -1,10 +1,67 @@
-import React from "react";
+import React, { useRef } from "react";
 import Header from "./Header";
 import { useState } from "react";
+import { CheckValidData } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+
 
 const Login = () => {
 
     const [isSignIn, setIsSignIn] = useState(true);
+    const [errorMessage, setErrorMessage] = useState(null);
+    const navigate = useNavigate();
+    const email = useRef(null);
+    const password = useRef(null);
+    const name = useRef(null);
+    const dispatch = useDispatch();
+
+    const handleButtonClick = () => {
+        const message = CheckValidData(email.current.value, password.current.value)
+        setErrorMessage(message);
+        if (message) return;
+        if (!isSignIn) {
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    // Signed up 
+                    const user = userCredential.user;
+                    updateProfile(user, {
+                        displayName: name.current.value, photoURL: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F3%2F30%2FReact_Logo_SVG.svg&tbnid=1YRCTmBnER_nsM&vet=12ahUKEwjal4nDwcCDAxU_hWMGHZQ4BAwQMygAegQIARBz..i&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FReact_(software)&docid=Fiz1iGC5gm0AcM&w=800&h=728&q=react&ved=2ahUKEwjal4nDwcCDAxU_hWMGHZQ4BAwQMygAegQIARBzs"
+                    }).then(() => {
+                        // Profile updated!
+                        const { uid, email, displayName, photoURL } = auth.currentUser;
+                        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }))
+                        navigate("/browse");
+                    }).catch((error) => {
+                        // An error occurred
+                        // ...
+                    });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorCode + "-" + errorMessage);
+                });
+        }
+
+        else {
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    navigate("/browse");
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorCode + "-" + errorMessage);
+                });
+        }
+    }
+
     const handleEvent = () => {
         setIsSignIn(!isSignIn);
     }
@@ -18,12 +75,13 @@ const Login = () => {
             </div>
 
 
-            <form className="w-1/4 absolute bg-black bg-opacity-75 p-12 my-36 mx-auto left-0 right-0 text-white">
+            <form onSubmit={(e) => e.preventDefault()} className="w-1/4 absolute bg-black bg-opacity-75 p-12 my-36 mx-auto left-0 right-0 text-white">
                 <h1 className="text-3xl font-bold">{isSignIn ? "Sign In" : "Sign up"}</h1>
-                {isSignIn ? null : <input className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="text" placeholder="Name" />}
-                <input className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="text" placeholder="Email Address" />
-                <input className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="password" placeholder="Password" />
-                <button className="bg-red-700 my-4 py-2 w-full">{isSignIn ? "Sign In" : "Sign up"}</button>
+                {isSignIn ? null : <input ref={name} className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="text" placeholder="Name" />}
+                <input ref={email} className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="text" placeholder="Email Address" />
+                <input ref={password} className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="password" placeholder="Password" />
+                <p className="text-red-500 font-bold pt-2">{errorMessage}</p>
+                <button onClick={handleButtonClick} className="bg-red-700 my-4 py-2 w-full">{isSignIn ? "Sign In" : "Sign up"}</button>
                 <div className="flex justify-between">
                     <div className="">
                         <input className="mx-1" type="checkbox" />
