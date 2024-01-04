@@ -11,6 +11,15 @@
  - Implemented Redux Store to store the data of the user signing in.
  - Implemented Sign Out
  - Update Profile api call also done
+ - BUG Fix : If the user is not logged in he/she should not go to browse page and if logged in
+   then not go to login page 
+ - Unsubscribed to the onAuthStateChange callback
+ - Add hardcoded values to the constants file
+ - Register for TMDB API 
+ - Create a movieSlice and update with data
+ - Planning for main container and secondary container
+ - Fetched the trailer video and stored the trailer in the store
+ - Embedded the youtube video and make it autoplay and mute
 
 
 
