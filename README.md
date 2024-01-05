@@ -20,6 +20,7 @@
  - Planning for main container and secondary container
  - Fetched the trailer video and stored the trailer in the store
  - Embedded the youtube video and make it autoplay and mute
+ - Build Secondary Component
 
 
 
