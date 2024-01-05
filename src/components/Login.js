@@ -6,6 +6,7 @@ import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import DropDown from "./DropDown";
 
 
 const Login = () => {

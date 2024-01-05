@@ -2,6 +2,7 @@ import React from 'react'
 import MovieList from './MovieList'
 import MovieCards from './MovieCards'
 import { useSelector } from 'react-redux'
+import DropDown from './DropDown'
 
 const SecondaryContainer = () => {
     const movies = useSelector(store => store.movies);

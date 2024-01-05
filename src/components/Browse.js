@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './Header'
 import { useEffect } from "react";
 import { addNowPlayingMovies } from "../utils/movieSlice";
@@ -7,7 +7,11 @@ import { useDispatch } from "react-redux";
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 
+import { Provider } from 'react-redux';
+
+
 const Browse = () => {
+
 
     const dispatch = useDispatch()
     useEffect(() => {
@@ -23,6 +27,7 @@ const Browse = () => {
 
     return (
         <div>
+
             <Header />
             <MainContainer />
             <SecondaryContainer />

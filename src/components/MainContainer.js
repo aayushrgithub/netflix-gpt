@@ -2,6 +2,7 @@ import React from 'react'
 import VideoTitle from './VideoTitle'
 import VideoBackground from './VideoBackground'
 import { useSelector } from 'react-redux'
+import DropDown from './DropDown'
 
 const MainContainer = () => {
 
@@ -14,6 +15,9 @@ const MainContainer = () => {
 
     return (
         <div>
+            <div className='absolute text-white px-[80%] pt-28'>
+                <DropDown />
+            </div>
             <VideoTitle title={original_title} overview={overview} />
             <VideoBackground movieId={id} />
         </div>
