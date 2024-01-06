@@ -71,7 +71,7 @@ const Login = () => {
             </div>
 
 
-            <form onSubmit={(e) => e.preventDefault()} className="w-1/4 absolute bg-black bg-opacity-75 p-12 my-36 mx-auto left-0 right-0 text-white">
+            <form onSubmit={(e) => e.preventDefault()} className="w-[80%] my-72 p-16 md:w-1/4 absolute bg-black bg-opacity-75 md:p-12 md:my-36 mx-auto left-0 right-0 text-white">
                 <h1 className="text-3xl font-bold">{isSignIn ? "Sign In" : "Sign up"}</h1>
                 {isSignIn ? null : <input ref={name} className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="text" placeholder="Name" />}
                 <input ref={email} className="py-2 mx-0 my-2 w-full px-2 bg-gray-700" type="text" placeholder="Email Address" />

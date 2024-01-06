@@ -52,19 +52,19 @@ const Header = () => {
 
 
     return (
-        <div className=' flex justify-between items-center w-screen absolute px-8 py-2 bg-gradient-to-b from-black z-10'>
+        <div className='flex justify-between items-center w-screen absolute px-4 md:px-8 md:py-2 bg-gradient-to-b from-black z-10'>
             <img
-                className='w-48'
+                className='w-36 md:w-48'
                 src={LOGO}
                 alt='LOGO'
             />
 
-            {user && <div className='flex'>
-                <img className='w-8 h-8 mx-12 cursor-pointer' src={USER_AVATAR}
+            {user && <div className='flex justify-between'>
+                <img className='mx-8 w-6 h-6 md:w-8 md:h-8 md:mx-12 cursor-pointer' src={USER_AVATAR}
                     alt='userIcon'
                     onClick={() => handleDropDown()}
                 />
-                <button onClick={handleSignOut} className='text-white px-12 cursor-pointer'>Sign Out</button>
+                <button onClick={handleSignOut} className='text-white px-0 md:px-12 cursor-pointer'>Sign Out</button>
             </div>}
         </div>
     )

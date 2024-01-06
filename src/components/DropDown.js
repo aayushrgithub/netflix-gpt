@@ -12,13 +12,13 @@ const DropDown = () => {
 
     return (
         <div className=''>
-            <ul className='bg-black text-white rounded-lg p-4'>
+            <ul className='bg-black text-white rounded-lg md:p-4'>
                 <li className='text-red-700 font-bold pt-2'>{name?.email}</li>
-                <li className='pt-4'>Account</li>
-                <li className='pt-4'>Manage Profiles</li>
-                <li className='pt-4'>Information</li>
-                <li className='pt-4'>NetflixGPT</li>
-                <li className='pt-4 pb-2'>Subscription</li>
+                <li className='pt-2 md:pt-4'>Account</li>
+                <li className='pt-2 md:pt-4'>Manage Profiles</li>
+                <li className='pt-2 md:pt-4'>Information</li>
+                <li className='pt-2 md:pt-4'>NetflixGPT</li>
+                <li className='pt-2 md:pt-4 pb-2'>Subscription</li>
             </ul>
         </div>
     )

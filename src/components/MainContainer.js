@@ -15,7 +15,7 @@ const MainContainer = () => {
 
     return (
         <div>
-            <div className='absolute text-white px-[80%] pt-28'>
+            <div className='absolute text-white px-[50%] md:px-[80%] pt-16 md:pt-28'>
                 <DropDown />
             </div>
             <VideoTitle title={original_title} overview={overview} />
