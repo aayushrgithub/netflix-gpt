@@ -3,17 +3,23 @@ import Header from './Header'
 import { useEffect } from "react";
 import { addNowPlayingMovies } from "../utils/movieSlice";
 import { API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 
 import { Provider } from 'react-redux';
+import MovieInformation from './MovieInformation';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
-const Browse = () => {
-
-
+const Browse = (props) => {
     const dispatch = useDispatch()
+    const location = useLocation();
+    let info = useSelector(store => store.toggle.toggleThePage);
+    const propsData = location.state
+    info = location.state
+    console.log(propsData)
+    console.log(info)
     useEffect(() => {
         getNowPlayingMovies();
     }, [])
@@ -27,10 +33,11 @@ const Browse = () => {
 
     return (
         <div>
-
             <Header />
-            <MainContainer />
-            <SecondaryContainer />
+            {info ? <MovieInformation id={propsData} /> : <><MainContainer />
+                <SecondaryContainer />
+            </>}
+
         </div>
     )
 }

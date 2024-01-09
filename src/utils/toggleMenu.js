@@ -4,13 +4,17 @@ const toggleMenu = createSlice({
     name: "toggle",
     initialState: {
         toggleTheMenu: false,
+        toggleThePage: false,
     },
     reducers: {
         toggleDown: (state) => {
             state.toggleTheMenu = !state.toggleTheMenu;
+        },
+        togglePage: (state) => {
+            state.toggleThePage = !state.toggleThePage;
         }
     }
 })
 
-export const { toggleDown } = toggleMenu.actions;
+export const { toggleDown, togglePage } = toggleMenu.actions;
 export default toggleMenu.reducer;
